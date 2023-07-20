@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../components/story_item.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -168,68 +170,166 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                           ),
                         ),
                         SizedBox(
-                          width: 11,
+                          width: 8,
                         ),
-                        StoryItem(),
-                        SizedBox(
-                          width: 11,
+                        ListView.separated(
+                          itemBuilder: (context, index) => StoryItem(),
+                          separatorBuilder: (context, index) => SizedBox(
+                            width: 8,
+                          ),
+                          itemCount: 5,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          physics: NeverScrollableScrollPhysics(),
                         ),
-                        StoryItem(),
-                        SizedBox(
-                          width: 11,
-                        ),
-                        StoryItem(),
                       ],
                     ),
                     Text("data1"),
                   ],
                 ),
-              )
+              ),
+              Divider(
+                thickness: 8,
+                color: Colors.grey.withOpacity(0.4),
+              ),
+              Container(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                "https://www.rri.res.in/sites/default/files/2022-09/Abhisek%20Tamang.jpg"),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  RichText(
+                                    text: TextSpan(
+                                        text: "John Mobbin",
+                                        children: [
+                                          TextSpan(
+                                              text: " added a new ",
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              )),
+                                          TextSpan(
+                                            text: "reel",
+                                          )
+                                        ],
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Just Now",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.music_note,
+                                        size: 15,
+                                      ),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Icon(
+                                        Icons.people,
+                                        size: 15,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Icon(Icons.add),
+                        ],
+                      ),
+                    ),
+                    Image.network(
+                      "https://www.rri.res.in/sites/default/files/2022-09/Abhisek%20Tamang.jpg",
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.heart_broken,
+                            color: Colors.red,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "4.5k",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Text("."),
+                          SizedBox(
+                            width: 6,
+                          ),
+                          Icon(
+                            Icons.stars,
+                            color: Colors.yellow,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            "Give",
+                            style: TextStyle(
+                              fontSize: 17,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.abc),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text("Like"),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ))
-        ],
-      ),
-    );
-  }
-}
-
-class StoryItem extends StatelessWidget {
-  const StoryItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: Colors.grey,
-          )),
-      height: 100,
-      width: 120,
-      clipBehavior: Clip.hardEdge,
-      child: Stack(
-        children: [
-          Image.network(
-            "https://images.pexels.com/photos/17645273/pexels-photo-17645273/free-photo-of-fashion-people-woman-relaxation.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-          ),
-          Positioned(
-            top: 5,
-            left: 5,
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  "https://www.rri.res.in/sites/default/files/2022-09/Abhisek%20Tamang.jpg"),
-            ),
-          ),
-          Positioned(
-            bottom: 9,
-            left: 8,
-            child: Text(
-              "data ",
-              style: TextStyle(fontSize: 18, color: Colors.black),
-            ),
-          ),
         ],
       ),
     );

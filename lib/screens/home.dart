@@ -37,19 +37,64 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           CircleAvatar(
             backgroundColor:
                 Color.fromARGB(255, 121, 120, 120).withOpacity(0.4),
-            child: IconButton(
+            child: PopupMenuButton<String>(
               icon: Icon(
                 FontAwesomeIcons.plus,
                 color: Colors.black,
               ),
-              onPressed: () async {
-                final returnvalue = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => ProfilePage(name: "Roshan khatri")),
-                );
-                print(returnvalue);
+              onSelected: (value) {
+                Navigator.pushNamed(context, '/' + value.toLowerCase());
               },
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                PopupMenuItem<String>(
+                  value: 'Posts',
+                  child: ListTile(
+                    leading: Icon(
+                      FontAwesomeIcons.penToSquare,
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                    title: Text('Posts'),
+                  ),
+                ),
+                PopupMenuDivider(),
+                PopupMenuItem<String>(
+                  value: 'Story',
+                  child: ListTile(
+                    leading: Icon(
+                      FontAwesomeIcons.bookOpen,
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                    title: Text('Story'),
+                  ),
+                ),
+                PopupMenuDivider(),
+                PopupMenuItem<String>(
+                  value: 'Reel',
+                  child: ListTile(
+                    leading: Icon(
+                      FontAwesomeIcons.clapperboard,
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                    title: Text('Reel'),
+                  ),
+                ),
+                PopupMenuDivider(),
+                PopupMenuItem<String>(
+                  value: 'Live',
+                  child: ListTile(
+                    leading: Icon(
+                      FontAwesomeIcons.video,
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                    title: Text('Live'),
+                  ),
+                ),
+              ],
+              offset: Offset(50, 53),
             ),
           ),
           const SizedBox(width: 8),
@@ -61,7 +106,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 FontAwesomeIcons.magnifyingGlass,
                 color: Colors.black,
               ),
-              onPressed: () {},
+              onPressed: () async {
+                final returnvalue = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfilePage(name: "Roshan khatri")),
+                );
+                print(returnvalue);
+              },
             ),
           ),
           const SizedBox(width: 8),
@@ -85,9 +137,18 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             padding: EdgeInsets.all(10),
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      "https://www.rri.res.in/sites/default/files/2022-09/Abhisek%20Tamang.jpg"),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ProfilePage(name: "Profile page")));
+                  },
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        "https://www.rri.res.in/sites/default/files/2022-09/Abhisek%20Tamang.jpg"),
+                  ),
                 ),
                 SizedBox(width: 8),
                 Expanded(

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:practice/screens/counter_app.dart';
 import 'package:practice/screens/counter_app_with_riverpod.dart';
+import 'package:practice/screens/create_post.dart';
+import 'package:practice/screens/create_story.dart';
 import 'package:practice/screens/home.dart';
 
 void main() {
@@ -13,9 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CounterAppWithRiverpod(),
+      home: Home(),
+      routes: {
+        '/posts': (context) => CreatePost(),
+        '/story': (context) => CreateStory(),
+        '/reel': (context) => CreatePost(),
+        '/live': (context) => CreateStory(),
+      },
     );
   }
 }

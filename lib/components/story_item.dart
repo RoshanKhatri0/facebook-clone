@@ -34,7 +34,10 @@ class StoryItem extends StatelessWidget {
             left: 8,
             child: Text(
               "data ",
-              style: TextStyle(fontSize: 18, color: Colors.black),
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ],
